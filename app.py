@@ -42,6 +42,18 @@ def get_ip_addresses():
     # Return the list of IP addresses in JSON format
     return {'ip_addresses': ip_addresses}, {'Content-Type': 'application/json'}
 
+# Define an error handler for 404 errors
+@app.errorhandler(404)
+def not_found_error(error):
+    # Return a plain text response with a 404 status code
+    return '404 Error: Page not found', 404
+
+# Define an error handler for 500 errors
+@app.errorhandler(500)
+def internal_error(error):
+    # Return a plain text response with a 500 status code
+    return '500 Error: Internal server error', 500
+
 # Start the Flask app
 if __name__ == '__main__':
     # Get the port number from the environment variables or use a default value of 8080
