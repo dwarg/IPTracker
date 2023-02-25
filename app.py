@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 # Initialize rate limiting for the app with a limit of 5 requests per minute by default
-limiter = Limiter(app, default_limits=["5 per minute"])
+limiter = Limiter(app, default_limits=["5 per minute"], headers_enabled=True)
 
 # Create an empty list to store IP addresses
 ip_addresses = []
