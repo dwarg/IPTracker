@@ -1,0 +1,17 @@
+apiVersion: v1
+# Defines the kind of resource that we are creating, which in this case is a Kubernetes service.
+kind: Service
+# Contains metadata about the service, such as its name and labels.
+metadata:
+  name: app
+spec:
+  # Sets the service type to "NodePort", which exposes the service on a static port on each node in the cluster
+  type: NodePort
+  selector:
+    app: app
+  ports:
+    - protocol: TCP
+      # Sets the port number for the service to "80".
+      port: 80
+      # Sets the target port for the service to "8080", which is the port that the containers in the pods are listening on.
+      targetPort: 8080
