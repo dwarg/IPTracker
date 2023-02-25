@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+# Defines the kind of resource that we are creating, which in this case is a Kubernetes deployment.
+kind: Deployment
+metadata:
+  name: app
+spec:
+  # Set the desired number of replicas for the deployment
+  replicas: 1
+  # Use label selector to match the pods managed by the deployment
+  selector:
+    matchLabels:
+      app: app
+  # Define the pod template for the deployment
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: image_name/app:latest #rename it to your docker image name
+        ports:
+        - containerPort: 8080
+        # Set up liveness and readiness probes for the container
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        # Define the resource limits and requests for the container
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "600m"
+          requests:
+            memory: "64Mi"
+            cpu: "300m"
