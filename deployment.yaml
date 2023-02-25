@@ -37,8 +37,8 @@ spec:
         # Define the resource limits and requests for the container
         resources:
           limits:
-            memory: "256Mi"
-            cpu: "600m"
+            memory: "128Mi"
+            cpu: "500m"
           requests:
             memory: "64Mi"
-            cpu: "300m"
+            cpu: "200m"
